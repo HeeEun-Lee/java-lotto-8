@@ -18,11 +18,12 @@ class ResultTest {
         int purchaseAmount = 6000;
 
         Result result = new Result(ranks, purchaseAmount);
+        var dto = result.toDto();
 
-        assertThat(result.getRankCount().get(Rank.FIRST)).isEqualTo(2);
-        assertThat(result.getRankCount().get(Rank.SECOND)).isEqualTo(1);
-        assertThat(result.getRankCount().get(Rank.FIFTH)).isEqualTo(2);
-        assertThat(result.getRankCount().get(Rank.MISS)).isEqualTo(1);
+        assertThat(dto.getRankCount().get(Rank.FIRST)).isEqualTo(2);
+        assertThat(dto.getRankCount().get(Rank.SECOND)).isEqualTo(1);
+        assertThat(dto.getRankCount().get(Rank.FIFTH)).isEqualTo(2);
+        assertThat(dto.getRankCount().get(Rank.MISS)).isEqualTo(1);
     }
 
     @DisplayName("수익률이 올바르게 계산된다.")

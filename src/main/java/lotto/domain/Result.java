@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.dto.ResultResponseDto;
 
 public class Result {
     private final Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
@@ -14,10 +15,6 @@ public class Result {
         this.purchaseAmount = purchaseAmount;
         for (Rank rank : Rank.values()) rankCount.put(rank, 0);
         for (Rank rank : ranks) rankCount.put(rank, rankCount.get(rank) + 1);
-    }
-
-    public Map<Rank, Integer> getRankCount() {
-        return rankCount;
     }
     public double calculateProfitRate() {
         long totalPrize = rankCount.entrySet().stream()
@@ -35,5 +32,9 @@ public class Result {
                 .setScale(2, RoundingMode.HALF_UP);          // 소수점 둘째 자리 반올림
 
         return rate.doubleValue();
+    }
+
+    public ResultResponseDto toDto() {
+        return new ResultResponseDto(rankCount, calculateProfitRate());
     }
 }
