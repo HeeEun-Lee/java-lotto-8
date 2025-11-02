@@ -16,6 +16,11 @@ public class Result {
         for (Rank rank : Rank.values()) rankCount.put(rank, 0);
         for (Rank rank : ranks) rankCount.put(rank, rankCount.get(rank) + 1);
     }
+
+    public Map<Rank, Integer> getRankCount() {
+        return Map.copyOf(rankCount); // 불변 Map으로 반환 → 외부 수정 불가
+    }
+
     public double calculateProfitRate() {
         long totalPrize = rankCount.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
