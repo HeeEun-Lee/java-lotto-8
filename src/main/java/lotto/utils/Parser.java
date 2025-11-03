@@ -14,12 +14,10 @@ public class Parser {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT.getMessage());
         }
 
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
-
-        return numbers;
     }
 
 }
