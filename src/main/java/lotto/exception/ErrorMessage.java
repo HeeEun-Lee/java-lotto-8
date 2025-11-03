@@ -12,7 +12,7 @@ public enum ErrorMessage {
     private final String message;
 
     // 에러 메시지 공통 접두사
-    public static final String ERROR_PREFIX = "[ERROR]";
+    public static final String ERROR_PREFIX = "[ERROR] ";
     ErrorMessage(String message) {
         this.message = message;
     }
