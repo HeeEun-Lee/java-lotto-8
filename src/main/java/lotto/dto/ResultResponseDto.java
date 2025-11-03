@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class ResultResponseDto {
     private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("#,###");
+    private static final DecimalFormat PROFIT_FORMAT = new DecimalFormat("#,##0.0");
     private final Map<Rank, Integer> rankCount;
     private final Map<String, Integer> resultSummary;
 
@@ -49,6 +50,9 @@ public class ResultResponseDto {
 
     public double getProfitRate() {
         return profitRate;
+    }
+    public String getFormattedProfitRate() {
+        return PROFIT_FORMAT.format(profitRate) + "%";
     }
     public Map<String, Integer> getResultSummary() {
         return resultSummary;

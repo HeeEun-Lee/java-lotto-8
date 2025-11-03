@@ -26,11 +26,11 @@ public class OutputView {
                 .forEach((key, value) -> System.out.println(key + " - " + value + "개"));
 
 
-        printProfitRate(result.getProfitRate());
+        printProfitRate(result.getFormattedProfitRate());
     }
 
-    public void printProfitRate(double profitRate) {
-        System.out.printf(MessageConstant.RESULT_PROFIT + "%n", profitRate);
+    public void printProfitRate(String profitRate) {
+        System.out.println(MessageConstant.RESULT_PROFIT_PREFIX + profitRate + MessageConstant.RESULT_PROFIT_SUFFIX);
     }
 
     public void printLine() {

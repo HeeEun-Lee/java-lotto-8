@@ -14,6 +14,9 @@ public final class MessageConstant {
     public static final String PURCHASE_COUNT_SUFFIX = "개를 구매했습니다.";
     public static final String RESULT_TITLE = "당첨 통계";
     public static final String RESULT_SEPARATOR = "---";
-    public static final String RESULT_PROFIT = "총 수익률은 %.1f%%입니다.";
+//    public static final String RESULT_PROFIT = "총 수익률은 %.1f%%입니다.";
+
+    public static final String RESULT_PROFIT_PREFIX = "총 수익률은 ";
+    public static final String RESULT_PROFIT_SUFFIX = "입니다.";
 
 }
