@@ -22,22 +22,22 @@ public class LottoController {
     }
 
     public void run() {
-        List<LottoResponseDto> purchasedLottos = purchaseLottos();
+        List<LottoResponseDto> purchasedLotto = purchaseLotto();
         Lotto winningNumbers = inputWinningNumbers();
-        WinningLotto winningLotto = inputBonusBumber(winningNumbers);
+        WinningLotto winningLotto = inputBonusNumber(winningNumbers);
 
-        ResultResponseDto result = calculateResult(purchasedLottos, winningLotto);
+        ResultResponseDto result = calculateResult(purchasedLotto, winningLotto);
         outputView.printResult(result);
 
     }
 
-    private List<LottoResponseDto> purchaseLottos() {
-        List<LottoResponseDto> purchasedLottos = InputRetryHandler.get(() -> {
+    private List<LottoResponseDto> purchaseLotto() {
+        List<LottoResponseDto> purchasedLotto = InputRetryHandler.get(() -> {
             int money = Validator.validateIntegerInput(inputView.readPurchaseAmount());
             return lottoService.buyLottos(money);
         });
-        outputView.printPurchasedLottos(purchasedLottos);
-        return purchasedLottos;
+        outputView.printPurchasedLottos(purchasedLotto);
+        return purchasedLotto;
     }
 
     private Lotto inputWinningNumbers() {
@@ -47,7 +47,7 @@ public class LottoController {
         });
     }
 
-    private WinningLotto inputBonusBumber(Lotto winningNumbers) {
+    private WinningLotto inputBonusNumber(Lotto winningNumbers) {
         return InputRetryHandler.get(() -> {
             int bonus = Validator.validateIntegerInput(inputView.readBonusNumber());
             return new WinningLotto(winningNumbers, bonus);
