@@ -27,9 +27,10 @@ public class ResultResponseDto {
                 Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST
         );
 
-        for (Rank rank : orderedRanks) {
-            summary.put(formatRankMessage(rank), rankCount.getOrDefault(rank, 0));
-        }
+        orderedRanks.forEach(rank ->
+                summary.put(formatRankMessage(rank), rankCount.getOrDefault(rank, 0))
+        );
+
 
         return summary;
     }
