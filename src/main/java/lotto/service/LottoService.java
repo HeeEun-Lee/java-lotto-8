@@ -3,11 +3,10 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.LottoResultCalculator;
-import lotto.domain.Result;
+import lotto.domain.WinningLotto;
 import lotto.dto.LottoResponseDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.dto.ResultResponseDto;
 import lotto.exception.ErrorMessage;
@@ -31,7 +30,7 @@ public class LottoService {
         }
     }
 
-    public ResultResponseDto calculateResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonus, int money) {
-        return calculator.calculate(purchasedLottos, winningLotto, bonus, money).toDto();
+    public ResultResponseDto calculateResult(List<Lotto> purchasedLottos, WinningLotto winningLotto, int money) {
+        return calculator.calculate(purchasedLottos, winningLotto, money).toDto();
     }
 }
