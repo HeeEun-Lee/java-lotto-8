@@ -19,6 +19,7 @@ public class OutputView {
     }
 
     public void printResult(ResultResponseDto result) {
+        printLine();
         System.out.println(MessageConstant.RESULT_TITLE);
         System.out.println(MessageConstant.RESULT_SEPARATOR);
 
