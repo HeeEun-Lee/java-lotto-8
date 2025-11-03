@@ -5,6 +5,7 @@ import lotto.dto.*;
 import lotto.service.LottoService;
 import lotto.utils.InputRetryHandler;
 import lotto.utils.Parser;
+import lotto.utils.Validator;
 import lotto.view.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class LottoController {
 
     public void run() {
         List<LottoResponseDto> purchasedLottos = InputRetryHandler.get(() -> {
-            int money = inputView.readPurchaseAmount();
+            int money = Validator.validateIntegerInput(inputView.readPurchaseAmount());
             return lottoService.buyLottos(money);
         });
         outputView.printPurchasedLottos(purchasedLottos);
@@ -33,7 +34,7 @@ public class LottoController {
         });
 
         WinningLotto winningLotto = InputRetryHandler.get(() -> {
-            int bonus = inputView.readBonusNumber();
+            int bonus = Validator.validateIntegerInput(inputView.readBonusNumber());
             return new WinningLotto(winningNumbers, bonus);
         });
 

@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.MessageConstant;
 
 public class InputView {
-    public int readPurchaseAmount() {
+    public String readPurchaseAmount() {
         System.out.println(MessageConstant.INPUT_PURCHASE_AMOUNT);
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public String readWinningNumbers() {
@@ -14,9 +14,9 @@ public class InputView {
         return Console.readLine();
     }
 
-    public int readBonusNumber() {
+    public String readBonusNumber() {
         System.out.println();
         System.out.println(MessageConstant.INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 }
