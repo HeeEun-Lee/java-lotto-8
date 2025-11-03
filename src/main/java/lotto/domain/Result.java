@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -22,21 +21,16 @@ public class Result {
     }
 
     public double calculateProfitRate() {
+        if (purchaseAmount == 0) return 0.0;
+
         long totalPrize = rankCount.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
 
-        // BigDecimal을 사용한 정밀 계산
-        BigDecimal total = BigDecimal.valueOf(totalPrize);
-        BigDecimal purchase = BigDecimal.valueOf(purchaseAmount);
+        double rate = ((double) totalPrize / purchaseAmount) * 100;
 
-        // (총 상금 / 구입 금액) * 100, 소수점 둘째 자리 반올림
-        BigDecimal rate = total
-                .divide(purchase, 10, RoundingMode.HALF_UP)  // 소수점 10자리까지 정확히 계산
-                .multiply(BigDecimal.valueOf(100))
-                .setScale(2, RoundingMode.HALF_UP);          // 소수점 둘째 자리 반올림
-
-        return rate.doubleValue();
+        // 소수점 둘째 자리까지 반올림
+        return Math.round(rate * 100) / 100.0;
     }
 
     public ResultResponseDto toDto() {

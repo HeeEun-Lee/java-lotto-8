@@ -33,4 +33,8 @@ public class LottoService {
     public ResultResponseDto calculateResult(List<Lotto> purchasedLottos, WinningLotto winningLotto, int money) {
         return calculator.calculate(purchasedLottos, winningLotto, money).toDto();
     }
+
+    public int getTotalMoneySpent(List<LottoResponseDto> lottos) {
+        return lottos.size() * PRICE_PER_TICKET;
+    }
 }
