@@ -16,6 +16,4 @@ public final class MessageConstant {
     public static final String RESULT_SEPARATOR = "---";
     public static final String RESULT_PROFIT = "총 수익률은 %.1f%%입니다.";
 
-    // 에러 메시지 공통 접두사
-    public static final String ERROR_PREFIX = "[ERROR]";
 }

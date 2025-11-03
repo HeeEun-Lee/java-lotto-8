@@ -9,7 +9,7 @@ public class InputRetryHandler {
             try {
                 return inputFunction.get();  // 입력 시도
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
