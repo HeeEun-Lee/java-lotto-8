@@ -22,29 +22,44 @@ public class LottoController {
     }
 
     public void run() {
+        List<LottoResponseDto> purchasedLottos = purchaseLottos();
+        Lotto winningNumbers = inputWinningNumbers();
+        WinningLotto winningLotto = inputBonusBumber(winningNumbers);
+
+        ResultResponseDto result = calculateResult(purchasedLottos, winningLotto);
+        outputView.printResult(result);
+
+    }
+
+    private List<LottoResponseDto> purchaseLottos() {
         List<LottoResponseDto> purchasedLottos = InputRetryHandler.get(() -> {
             int money = Validator.validateIntegerInput(inputView.readPurchaseAmount());
             return lottoService.buyLottos(money);
         });
         outputView.printPurchasedLottos(purchasedLottos);
+        return purchasedLottos;
+    }
 
-        Lotto winningNumbers = InputRetryHandler.get(() -> {
+    private Lotto inputWinningNumbers() {
+        return InputRetryHandler.get(() -> {
             String input = inputView.readWinningNumbers();
             return new Lotto(Parser.parse(input));
         });
+    }
 
-        WinningLotto winningLotto = InputRetryHandler.get(() -> {
+    private WinningLotto inputBonusBumber(Lotto winningNumbers) {
+        return InputRetryHandler.get(() -> {
             int bonus = Validator.validateIntegerInput(inputView.readBonusNumber());
             return new WinningLotto(winningNumbers, bonus);
         });
+    }
 
+    private ResultResponseDto calculateResult(List<LottoResponseDto> purchasedLottos, WinningLotto winningLotto) {
         int money = lottoService.getTotalMoneySpent(purchasedLottos);
-        ResultResponseDto result = lottoService.calculateResult(
+        return lottoService.calculateResult(
                 purchasedLottos.stream().map(dto -> new Lotto(dto.getNumbers())).toList(),
                 winningLotto,
                 money
         );
-
-        outputView.printResult(result);
     }
 }
